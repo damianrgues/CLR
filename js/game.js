@@ -22,7 +22,7 @@ function Game(){
     var that = this;
     setInterval(function() {
       that.createEnemy();
-    }, 2 * 200);
+    }, 2 * 800);
     //Restar contador
     setInterval(function() {
       that.restTime();
@@ -59,10 +59,13 @@ Game.prototype.checkTime = function() {
     location.href ="looser.html";
   }
 };
+/*
 
 Game.prototype.printScore = function() {
   scoreView.html(this.score);
 };
+
+*/
 
 Game.prototype.createEnemy = function() {
   var that = this;
