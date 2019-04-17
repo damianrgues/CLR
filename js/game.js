@@ -11,9 +11,9 @@ function Game(){
     // music
 
     this.soundGame= document.createElement("audio");
-    this.soundGame.src =("/Users/damian/Desktop/BETA-CRS/CLR1/music/music_background.mp3");
+    this.soundGame.src =("../music/music_background.mp3");
     this.soundGame.play();
-    this.soundGame.volume=0,1;
+    this.soundGame.volume=0.7;
 
     // Score for the player // Change for lives
     //this.score = 0;
@@ -30,11 +30,13 @@ function Game(){
     var that = this;
     setInterval(function() {
       that.createEnemy();
-    }, 2 * 800);
+    }, 2 * 600);
     //Restar contador
     setInterval(function() {
       that.restTime();
     }, 1 * 1000);
+
+    setTimeout(()=>{},20000)
 }
 
 //Print rest time
@@ -45,6 +47,7 @@ Game.prototype.restTime = function() {
 
 Game.prototype.checkCollision = function(player, enemy){
   if (player.player.collision(enemy.enemy).length >  0) {
+    console.log("hdudduduududu")
     this.timeRest = this.timeRest - 2;
     return true;
   }
@@ -85,12 +88,15 @@ Game.prototype.createEnemy = function() {
 Game.prototype.move = function() {
   // move the enemies
   var that = this;
-  this.enemies.forEach(function(enemy){
+  this.enemies.forEach((enemy,index) => {
     if(that.checkCollision(that.player,enemy)){
       //that.score += 10;
-      enemy.delete();
+      enemy.delete()
+      this.enemies.splice(index,1)
     } else if(enemy.x > gameView.width()){
       enemy.delete();
+      this.enemies.splice(index,1)
+      
     } else {
       enemy.move();
     }
