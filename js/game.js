@@ -7,6 +7,14 @@ function Game(){
     // create the player for this game
     this.player = new Player(PLAYER_SPEED/this.fps);
 
+
+    // music
+
+    this.soundGame= document.createElement("audio");
+    this.soundGame.src =("/Users/damian/Desktop/BETA-CRS/CLR1/music/music_background.mp3");
+    this.soundGame.play();
+    this.soundGame.volume=0,1;
+
     // Score for the player // Change for lives
     //this.score = 0;
     this.timeRest = 30;
@@ -79,7 +87,7 @@ Game.prototype.move = function() {
   var that = this;
   this.enemies.forEach(function(enemy){
     if(that.checkCollision(that.player,enemy)){
-      that.score += 10;
+      //that.score += 10;
       enemy.delete();
     } else if(enemy.x > gameView.width()){
       enemy.delete();
@@ -94,4 +102,7 @@ Game.prototype.move = function() {
   //this.printScore();
   //this.checkScore();
   this.checkTime();
+  
 };
+
+
